@@ -5,11 +5,15 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">ProShop Ecommerce</Navbar.Brand>
+   
+          {" "}
+          <Navbar.Brand as={Link} to='/'>ProShop Ecommerce</Navbar.Brand>
+   
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -17,13 +21,20 @@ const Header = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1"><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
-            <NavDropdown title="SignIn" id="navbarScrollingDropdown">
+           
+            <Nav.Link as={Link} to="/cart">
+              <i className="fas fa-shopping-cart"></i>Cart
+            </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              <i className="fas fa-user"></i>
+              SignIn
+            </Nav.Link>
+            {/* <NavDropdown title="SignIn" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3"><i className="fas fa-user"></i>Name</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Email</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
           <Form className="d-flex">
             <Form.Control

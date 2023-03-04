@@ -6,7 +6,6 @@ import { Products } from '../product'
 const HomeScreen = () => {
   return (
     <Row>
-      <h1>Product Listing</h1>
       {
         Products.map((product,index)=>(
             <Col sm={12} md={6} lg={4} xl={3}>
