@@ -72,4 +72,4 @@ const Products= [
         numReviews:3
     },
 ]
-module.exports=Products
+ export default Products

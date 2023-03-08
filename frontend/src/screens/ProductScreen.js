@@ -13,7 +13,7 @@ setProduct(data)
   }
   useEffect(()=>{
     FetchSingleProduct()
-  },[])
+  },[match])
   // const product = Products.find((p) => p._id == match.params.id);
 console.log("productproduct",product)
   return (
