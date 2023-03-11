@@ -7,7 +7,7 @@ import { Products } from "../product";
 const ProductScreen = ({ match }) => {
   const [product,setProduct]=useState([])
   const FetchSingleProduct=async()=>{
-const {data} =await axios.get(`/api/product/${match.params.id}`)
+const {data} =await axios.get(`/api/products/${match.params.id}`)
 setProduct(data) 
 
   }
