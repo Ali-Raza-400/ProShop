@@ -7,6 +7,7 @@ import HomeScreen from "./screens/HomeScreen";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/cartScreen";
+import LoginScreen from "./screens/LoginScreen";
 const App = () => {
   return (
     <Router>
@@ -16,6 +17,7 @@ const App = () => {
       <h1>ProShop Ecommerce PlateForm</h1>
       <Route path='/' component={HomeScreen} exact />
       <Route path='/product/:id' component={ProductScreen}  />
+      <Route path='/login' component={LoginScreen}  />
       <Route path='/cart/:id?' component={CartScreen}  />
       </Container>
       </main>
