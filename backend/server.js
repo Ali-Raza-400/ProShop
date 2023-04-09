@@ -4,10 +4,13 @@ import dotenv from "dotenv";
 import ConnectDB from "./conn/db.js";
 dotenv.config();
 const app = express();
+app.use(express.json())
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 ConnectDB();
 app.use("/api/products",productRoutes)
+app.use("/api/user",userRoutes)
 app.use(notFound)
 app.use(errorHandler)
 const port = process.env.PORT || 4000;
