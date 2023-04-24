@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  USER_DETAILED_FAIL,
+  USER_DETAILED_REQUEST,
+  USER_DETAILED_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -33,7 +36,6 @@ export const login = (email,password) => async (dispatch) => {
   }
 };
 export const register = (name,email,password) => async (dispatch) => {
-  console.log("💕💕💕",name,email,password)
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
     const config={
@@ -49,6 +51,30 @@ export const register = (name,email,password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const getUserDetails = (id) => async (dispatch,getState) => {
+  console.log("===>💕💕 I am running",getState(),id)
+  try {
+    dispatch({ type: USER_DETAILED_REQUEST });
+    const {userLogin:{userInfo}}=getState()
+    const config={
+        headers:{
+            Authorization:`Bearer ${userInfo.token}`
+        }
+    }
+    const { data } = await axios.get(`api/user/${id}`,config);
+console.log("user",data)
+    dispatch({ type: USER_DETAILED_SUCCESS, payload: data });
+    localStorage.setItem('userInfo',JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: USER_DETAILED_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

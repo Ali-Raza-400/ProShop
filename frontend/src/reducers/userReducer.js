@@ -1,4 +1,7 @@
 import {
+  USER_DETAILED_FAIL,
+  USER_DETAILED_REQUEST,
+  USER_DETAILED_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -35,6 +38,21 @@ export const userRegisterReducer = (state = {}, action) => {
         userInfo: action.payload,
       };
     case USER_REGISTER_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+export const userDetailsReducer = (state = {user:{}}, action) => {
+  switch (action.type) {
+    case USER_DETAILED_REQUEST:
+      return {...state, loading: true };
+    case USER_DETAILED_SUCCESS:
+      return {
+        loading: false,
+        user: action.payload,
+      };
+    case USER_DETAILED_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
