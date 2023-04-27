@@ -7,12 +7,12 @@ const app = express();
 app.use(express.json())
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import orderRoutes from './routes/productRoutes.js'
+import orderRoutes from './routes/orderRouters.js'
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 ConnectDB();
 app.use("/api/products",productRoutes)
 app.use("/api/user",userRoutes)
-app.use("/api/user",orderRoutes)
+app.use("/api/orders",orderRoutes)
 app.use(notFound)
 app.use(errorHandler)
 const port = process.env.PORT || 4000;
