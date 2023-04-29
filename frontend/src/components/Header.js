@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -8,7 +8,20 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userAction";
+import {useHistory} from 'react-router-dom'
 const Header = () => {
+  const history=useHistory()
+  console.log('history',history.location.pathname.split("/")[2])
+  const [keyword,setKeyword]=useState("")
+  const onSubmitHandler=(e)=>{
+    console.log("value",keyword)
+    e.preventDefault()
+    if(keyword.trim()){
+      history.push(`/search/${keyword}`)
+    }else{
+      history.push('/')
+    } 
+  }
   const dispatch =useDispatch()
   const {userInfo} =useSelector((state)=>state.userLogin)
   const logoutHandler = () => {
@@ -59,14 +72,16 @@ const Header = () => {
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onClick={onSubmitHandler}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={keyword}
+              onChange={(e)=>setKeyword(e.target.value)}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" >Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

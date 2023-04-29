@@ -22,6 +22,7 @@ const App = () => {
       <Container>
       <h1>ProShop Ecommerce PlateForm</h1>
       <Route path='/' component={HomeScreen} exact />
+      <Route path='/seach/:keyword' component={HomeScreen}  />
       <Route path='/product/:id' component={ProductScreen}  />
       <Route path='/login' component={LoginScreen}  />
       <Route path='/register' component={RegisterScreen}  />
